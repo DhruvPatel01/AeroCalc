@@ -211,7 +211,7 @@ if __name__ == "__main__":
 
     while True:
         try:
-            s = session.prompt('AeroCalc > ')
+            s = session.prompt('NotAeroCalc > ')
         except EOFError:
             break
         except KeyboardInterrupt:
