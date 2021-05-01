@@ -1,0 +1,28 @@
+reset
+g = 9.80 * m/s/s;
+
+x0 = 0*m;
+y0 = 0*m;
+a0 = 53.1 * deg;
+V = 37.0 * m/s;
+
+V0x = V*cos(a0); # no need to write eq as a0 is already known
+V0y = V*sin(a0); # no need to write eq as a0 is already known
+
+t = 2*s;
+
+Vtx = V0x;
+Vty = V0y - g*t;
+
+Vt = sqrt(Vtx^2 + Vty^2)
+
+eq x0 + V0x*t - xt
+eq y0 + V0y*t - g/2*t^2 - yt
+
+solve xt, yt, Vtx, Vty, Vt
+
+#------------- Part B
+
+del t # t was set in part A; now it is unknown
+eq V0y - g*t;
+solve t
