@@ -24,7 +24,7 @@ if __name__ == "__main__":
         session = PromptSession(history=FileHistory(os.path.expanduser('~/.aerocalc_history')))
         while True:
             try:
-                s = session.prompt('NotAeroCalc > ')
+                s = session.prompt('NotAeroCalc > ').strip()
             except EOFError:
                 break
             except KeyboardInterrupt:
@@ -33,9 +33,13 @@ if __name__ == "__main__":
             if not s:
                 continue
 
-            try:
-                yacc.parse(s)
-            except Exception as e:
-                print(e)
-                pass
+            for line in s.split('\n'):
+                line = line.strip()
+                if not line:
+                    continue
+                try:
+                    yacc.parse(line)
+                except Exception as e:
+                    print(e)
+                    break
 
